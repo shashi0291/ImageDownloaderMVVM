@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.droid.android.imagedownloader.R
 import com.droid.android.imagedownloader.databinding.ActivityMainBinding
 import com.droid.android.imagedownloader.di.ViewModelProviderFactory
@@ -35,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         imageListViewModel.imageListLiveData.observe(this, Observer {
             imageListAdapter = ImageListAdapter(it.toMutableList())
             binding.imageListRecyclerView.adapter = imageListAdapter
+        })
+
+        imageListViewModel.errorLiveData.observe(this, Observer {
+            // handle error case here - display alert based on use case
         })
     }
 
