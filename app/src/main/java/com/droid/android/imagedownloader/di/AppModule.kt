@@ -1,5 +1,8 @@
 package com.droid.android.imagedownloader.di
 
+import com.droid.android.imagedownloader.repository.ImageListRepository
+import com.droid.android.imagedownloader.repository.ImageListRepositoryImpl
+import com.droid.android.imagedownloader.service.ImageService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -35,5 +38,15 @@ class AppModule {
             .connectTimeout(1200, TimeUnit.SECONDS)
             .build()
 
+    }
+
+    @Provides
+    fun provideImageListRepository(imageService: ImageService): ImageListRepository{
+        return ImageListRepositoryImpl(imageService)
+    }
+
+    @Provides
+    fun provideImageService(retrofit: Retrofit): ImageService {
+        return retrofit.create(ImageService::class.java)
     }
 }

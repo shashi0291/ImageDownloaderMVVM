@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 class ImageListServiceModule {
 
     @Provides
-    internal fun provideAuthService(retrofit: Retrofit): ImageService {
+    fun provideImageService(retrofit: Retrofit): ImageService {
         return retrofit.create(ImageService::class.java)
     }
 }

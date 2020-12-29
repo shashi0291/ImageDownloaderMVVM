@@ -6,7 +6,9 @@ import com.droid.android.imagedownloader.di.DaggerAppComponent
 
 class ImageDownloaderApplication: Application() {
 
-    lateinit var appComponent: AppComponent
+    companion object {
+        lateinit var appComponent: AppComponent
+    }
 
     override fun onCreate() {
         super.onCreate()

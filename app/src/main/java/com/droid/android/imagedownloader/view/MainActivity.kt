@@ -1,35 +1,47 @@
 package com.droid.android.imagedownloader.view
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.Menu
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.droid.android.imagedownloader.R
+import com.droid.android.imagedownloader.databinding.ActivityMainBinding
+import com.droid.android.imagedownloader.di.ViewModelProviderFactory
+import com.droid.android.imagedownloader.viewmodel.ImageListViewModel
+import com.droid.android.imagedownloader.viewmodel.ImageListViewModelImpl
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var imageListViewModel: ImageListViewModel
+    lateinit var binding: ActivityMainBinding
+    lateinit var imageListAdapter: ImageListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(toolbar)
+        imageListViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(ImageListViewModelImpl::class.java)
+        imageListViewModel.fetchImageList()
+        setView()
+        setObservers()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
+    private fun setObservers() {
+        imageListViewModel.imageListLiveData.observe(this, Observer {
+            imageListAdapter = ImageListAdapter(it.toMutableList())
+            binding.imageListRecyclerView.adapter = imageListAdapter
+        })
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+    private fun setView() {
+        binding.apply {
+            imageListRecyclerView.layoutManager = GridLayoutManager(this@MainActivity, 3)
         }
+
     }
 }

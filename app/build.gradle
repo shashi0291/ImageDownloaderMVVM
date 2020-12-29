@@ -69,4 +69,7 @@ dependencies {
     // Rx-Retrofit Call Adapter to convert retrofit Call object to Observable or Flowable
     def rxcalladapter_version = '2.5.0'
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapter_version"
+
+    //imaging
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
