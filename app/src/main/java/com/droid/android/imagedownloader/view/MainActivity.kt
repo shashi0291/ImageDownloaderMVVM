@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.droid.android.imagedownloader.R
 import com.droid.android.imagedownloader.databinding.ActivityMainBinding
 import com.droid.android.imagedownloader.di.ViewModelProviderFactory
-import com.droid.android.imagedownloader.viewmodel.ImageListViewModel
-import com.droid.android.imagedownloader.viewmodel.ImageListViewModelImpl
+import com.droid.android.imagedownloader.imageDetail.viewmodel.ImageListViewModel
+import com.droid.android.imagedownloader.imageDetail.viewmodel.ImageListViewModelImpl
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setSupportActionBar(toolbar)
-        imageListViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(ImageListViewModelImpl::class.java)
+        imageListViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(
+            ImageListViewModelImpl::class.java)
         imageListViewModel.fetchImageList()
         setView()
         setObservers()

@@ -8,9 +8,9 @@ import com.squareup.picasso.Picasso
 fun setThumbnailImage(view: ImageView, url: String?) {
     url?.let {
         // !!! IMPORTANT - the certificate of the hosting site has expired and hence image can't be downloaded using picasso
-//            Picasso.get().load(url).into(binding.thumbnailImageView)
+            Picasso.get().load(url).into(view)
 
         // !!!! IMPORTANT - hardcoded one URL because of above issue (just for demo purpose)
-        Picasso.get().load("https://farm6.staticflickr.com/5294/5460063960_1ef2d5c216_o.jpg").into(view)
+//        Picasso.get().load("https://farm6.staticflickr.com/5294/5460063960_1ef2d5c216_o.jpg").into(view)
     }
 }

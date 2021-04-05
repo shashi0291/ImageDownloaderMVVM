@@ -1,4 +1,4 @@
-package com.droid.android.imagedownloader.viewmodel
+package com.droid.android.imagedownloader.imageDetail.viewmodel
 
 import androidx.lifecycle.LiveData
 import com.droid.android.model.Image

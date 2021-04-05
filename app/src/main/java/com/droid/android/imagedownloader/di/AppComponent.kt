@@ -2,7 +2,7 @@ package com.droid.android.imagedownloader.di
 
 import com.droid.android.imagedownloader.repository.ImageListRepository
 import com.droid.android.imagedownloader.view.MainActivity
-import com.droid.android.imagedownloader.viewmodel.ImageListViewModel
+import com.droid.android.imagedownloader.imageDetail.viewmodel.ImageListViewModel
 import dagger.Component
 import javax.inject.Singleton
 
