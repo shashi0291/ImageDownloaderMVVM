@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.droid.android.imagedownloader.ImageDownloaderApplication
 import com.droid.android.imagedownloader.repository.ImageListRepository
-import com.droid.android.imagedownloader.imageDetail.viewmodel.ImageListViewModelImpl
+import com.droid.android.imagedownloader.imageList.viewmodel.ImageListViewModelImpl
 
 import javax.inject.Inject
 

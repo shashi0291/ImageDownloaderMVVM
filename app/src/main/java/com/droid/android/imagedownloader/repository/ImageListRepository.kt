@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface ImageListRepository {
     fun fetchImage(): Single<List<Image>>
+//    fun getImageById(imageId: String): Single<String>
 }

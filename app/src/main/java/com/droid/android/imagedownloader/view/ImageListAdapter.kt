@@ -27,5 +27,7 @@ class ImageListAdapter constructor(private val imageList: MutableList<Image>) :
         (holder as ImageViewHolder).binding.thumbnailUrl = imageList[position].thumbnailUrl
     }
 
-    class ImageViewHolder(val binding: ImageListRowItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class ImageViewHolder(val binding: ImageListRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.droid.android.imagedownloader.imageDetail.viewmodel
+package com.droid.android.imagedownloader.imageList.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ImageListViewModelImpl @Inject constructor(val imageListResository: ImageListRepository) : ViewModel(),
+class ImageListViewModelImpl @Inject constructor(private val ImageListRepository: ImageListRepository) : ViewModel(),
     ImageListViewModel {
 
     private val _imageListMutableLiveData = MutableLiveData<List<Image>>()
@@ -25,7 +25,7 @@ class ImageListViewModelImpl @Inject constructor(val imageListResository: ImageL
 
     override fun fetchImageList() {
         compositeDisposable.add(
-            imageListResository.fetchImage()
+            ImageListRepository.fetchImage()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
