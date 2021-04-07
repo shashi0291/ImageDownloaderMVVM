@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.droid.android.model.Image
 
 interface ImageDetailViewModel {
-    val imageListLiveData: LiveData<List<Image>>
+    val imageListLiveData: LiveData<String>
     val errorLiveData: LiveData<String>
-    fun fetchImageList()
+    fun getImageById(id: Int)
 }

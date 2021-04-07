@@ -1,6 +1,7 @@
 package com.droid.android.imagedownloader.imageList.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,13 +45,17 @@ class ImageListFragment : Fragment() {
 
     private fun setObservers() {
         imageListViewModel.imageListLiveData.observe(this, Observer {
-            imageListAdapter = ImageListAdapter(it.toMutableList())
+            imageListAdapter = ImageListAdapter(it.toMutableList(), ::onImageItemClicked)
             binding.imageListRecyclerView.adapter = imageListAdapter
         })
 
         imageListViewModel.errorLiveData.observe(this, Observer {
             // handle error case here - display alert based on use case
         })
+    }
+
+    private fun onImageItemClicked(id: Int) {
+        Log.d("TAG", "Item ID $id")
     }
 }
 

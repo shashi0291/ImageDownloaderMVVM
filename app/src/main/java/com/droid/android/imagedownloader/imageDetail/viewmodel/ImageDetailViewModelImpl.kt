@@ -14,25 +14,27 @@ class ImageDetailViewModelImpl @Inject constructor(val imageListResository: Imag
     ViewModel(),
     ImageDetailViewModel {
 
-    private val _imageListMutableLiveData = MutableLiveData<List<Image>>()
+    private val _imageListMutableLiveData = MutableLiveData<String>()
     private val _errorMutableLiveData = MutableLiveData<String>()
 
-    override val imageListLiveData: LiveData<List<Image>>
+    override val imageListLiveData: LiveData<String>
         get() = _imageListMutableLiveData
     override val errorLiveData: LiveData<String>
         get() = _errorMutableLiveData
 
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
-    override fun fetchImageList() {
+    override fun getImageById(imageId: Int) {
         compositeDisposable.add(
             imageListResository.fetchImage()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    it?.let {
+                    it?.let { imageList ->
                         if (!it.isNullOrEmpty()) {
-                            _imageListMutableLiveData.postValue(it)
+                            imageList.firstOrNull { it.id == imageId }?.let { image ->
+                                _imageListMutableLiveData.postValue(image.url)
+                            }
                         } else {
                             _errorMutableLiveData.postValue("No Image Found")
                         }
