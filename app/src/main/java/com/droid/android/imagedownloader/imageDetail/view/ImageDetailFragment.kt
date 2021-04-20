@@ -1,6 +1,7 @@
 package com.droid.android.imagedownloader.imageDetail.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,16 @@ class ImageDetailFragment : Fragment() {
     lateinit var imageDetailViewModel: ImageDetailViewModel
     lateinit var binding: FragmentImageDetailBinding
 
+    companion object {
+        fun newInstance(id: Int): ImageDetailFragment {
+            val bundle = Bundle()
+            bundle.putInt("id", id)
+            val imageDetailFragment = ImageDetailFragment()
+            imageDetailFragment.arguments = bundle
+            return imageDetailFragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +40,9 @@ class ImageDetailFragment : Fragment() {
         imageDetailViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(
             ImageDetailViewModelImpl::class.java
         )
-        imageDetailViewModel.getImageById(id)
+        arguments?.let {
+            imageDetailViewModel.getImageById(it.getInt("id"))
+        }
         setView()
         setObservers()
         return view
@@ -42,8 +55,8 @@ class ImageDetailFragment : Fragment() {
 
     private fun setObservers() {
         imageDetailViewModel.imageListLiveData.observe(this, Observer {
-//            imageListAdapter = ImageListAdapter(it.toMutableList())
-//            binding.imageListRecyclerView.adapter = imageListAdapter
+            Log.d("TAG", "URL = $it")
+            binding.mainUrl = it
         })
 
         imageDetailViewModel.errorLiveData.observe(this, Observer {

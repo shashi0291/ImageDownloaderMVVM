@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import com.droid.android.imagedownloader.R
 import com.droid.android.imagedownloader.databinding.FragmentImageListBinding
 import com.droid.android.imagedownloader.di.ViewModelProviderFactory
+import com.droid.android.imagedownloader.imageDetail.view.ImageDetailFragment
 import com.droid.android.imagedownloader.imageList.viewmodel.ImageListViewModel
 import com.droid.android.imagedownloader.imageList.viewmodel.ImageListViewModelImpl
 import com.droid.android.imagedownloader.view.ImageListAdapter
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class ImageListFragment : Fragment() {
 
@@ -56,6 +59,10 @@ class ImageListFragment : Fragment() {
 
     private fun onImageItemClicked(id: Int) {
         Log.d("TAG", "Item ID $id")
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, ImageDetailFragment.newInstance(id))
+        transaction.addToBackStack(ImageListFragment::class.java.name)
+        transaction.commit()
     }
 }
 

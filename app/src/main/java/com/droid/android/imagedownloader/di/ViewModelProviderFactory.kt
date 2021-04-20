@@ -3,6 +3,7 @@ package com.droid.android.imagedownloader.di;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import com.droid.android.imagedownloader.ImageDownloaderApplication
+import com.droid.android.imagedownloader.imageDetail.viewmodel.ImageDetailViewModelImpl
 import com.droid.android.imagedownloader.repository.ImageListRepository
 import com.droid.android.imagedownloader.imageList.viewmodel.ImageListViewModelImpl
 
@@ -20,6 +21,11 @@ class ViewModelProviderFactory : ViewModelProvider.Factory {
         apiComponent.inject(this)
         if (modelClass.isAssignableFrom(ImageListViewModelImpl::class.java)) {
             return ImageListViewModelImpl(
+                imageListRepository
+            ) as T
+        }
+        if (modelClass.isAssignableFrom(ImageDetailViewModelImpl::class.java)) {
+            return ImageDetailViewModelImpl(
                 imageListRepository
             ) as T
         }
