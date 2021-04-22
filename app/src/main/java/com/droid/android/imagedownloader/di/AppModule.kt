@@ -40,6 +40,7 @@ class AppModule {
 
     }
 
+    @Singleton
     @Provides
     fun provideImageListRepository(imageService: ImageService): ImageListRepository{
         return ImageListRepositoryImpl(imageService)

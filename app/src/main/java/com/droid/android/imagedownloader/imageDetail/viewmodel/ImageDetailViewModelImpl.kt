@@ -26,7 +26,7 @@ class ImageDetailViewModelImpl @Inject constructor(val imageListResository: Imag
 
     override fun getImageById(imageId: Int) {
         compositeDisposable.add(
-            imageListResository.fetchImage()
+            imageListResository.getImageFromCache()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

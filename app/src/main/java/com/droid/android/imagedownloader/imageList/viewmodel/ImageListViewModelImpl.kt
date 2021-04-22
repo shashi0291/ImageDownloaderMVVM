@@ -23,9 +23,13 @@ class ImageListViewModelImpl @Inject constructor(private val imageListRepository
 
     val compositeDisposable = CompositeDisposable()
 
+    init {
+        fetchImageList()
+    }
+
     override fun fetchImageList() {
         compositeDisposable.add(
-            imageListRepository.fetchImage()
+            imageListRepository.getImageFromCacheOrInit()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

@@ -24,6 +24,13 @@ class ImageListFragment : Fragment() {
     lateinit var binding: FragmentImageListBinding
     lateinit var imageListAdapter: ImageListAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        imageListViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(
+            ImageListViewModelImpl::class.java
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,10 +38,6 @@ class ImageListFragment : Fragment() {
     ): View? {
         binding = FragmentImageListBinding.inflate(inflater, container, false)
         val view = binding.root
-        imageListViewModel = ViewModelProviders.of(this, ViewModelProviderFactory()).get(
-            ImageListViewModelImpl::class.java
-        )
-        imageListViewModel.fetchImageList()
         setView()
         setObservers()
         return view

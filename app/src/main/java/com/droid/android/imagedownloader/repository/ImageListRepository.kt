@@ -1,9 +1,11 @@
 package com.droid.android.imagedownloader.repository
 
 import com.droid.android.model.Image
+import io.reactivex.Observable
 import io.reactivex.Single
 
 interface ImageListRepository {
-    fun fetchImage(): Single<List<Image>>
-//    fun getImageById(imageId: String): Single<String>
+    fun init()
+    fun getImageFromCacheOrInit(): Observable<List<Image>>
+    fun getImageFromCache(): Observable<List<Image>>
 }

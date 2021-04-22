@@ -15,8 +15,7 @@ import javax.inject.Singleton
 @Component(
     modules = [AppModule::class,
         ImageListViewModelModule::class,
-        ImageDetailViewModelModule::class,
-        ImageListRepositoryModule::class]
+        ImageDetailViewModelModule::class]
 )
 interface AppComponent {
     fun inject(mainActivity: MainActivity)
