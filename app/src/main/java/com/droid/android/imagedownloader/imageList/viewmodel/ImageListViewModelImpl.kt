@@ -10,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ImageListViewModelImpl @Inject constructor(private val ImageListRepository: ImageListRepository) : ViewModel(),
+class ImageListViewModelImpl @Inject constructor(private val imageListRepository: ImageListRepository) : ViewModel(),
     ImageListViewModel {
 
     private val _imageListMutableLiveData = MutableLiveData<List<Image>>()
@@ -25,7 +25,7 @@ class ImageListViewModelImpl @Inject constructor(private val ImageListRepository
 
     override fun fetchImageList() {
         compositeDisposable.add(
-            ImageListRepository.fetchImage()
+            imageListRepository.fetchImage()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

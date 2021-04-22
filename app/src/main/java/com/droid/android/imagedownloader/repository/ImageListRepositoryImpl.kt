@@ -8,12 +8,13 @@ import javax.inject.Inject
 class ImageListRepositoryImpl @Inject constructor(private val imageService: ImageService) :
     ImageListRepository {
 
-    private var imageListData: Single<List<Image>>? = null
+//    private var imageListData: Single<List<Image>>? = null
 
     override fun fetchImage(): Single<List<Image>> {
-        if (imageListData == null) {
-            imageListData = imageService.fetchImageList()
-        }
-        return imageListData as Single<List<Image>>
+//        if (imageListData == null) {
+//            imageListData = imageService.fetchImageList()
+//        }
+//        return imageListData as Single<List<Image>>
+        return imageService.fetchImageList()
     }
 }
