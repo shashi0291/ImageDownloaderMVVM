@@ -5,7 +5,7 @@ import com.droid.android.model.Image
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ImageListRepositoryImpl @Inject constructor(val imageService: ImageService) :
+class ImageListRepositoryImpl @Inject constructor(private val imageService: ImageService) :
     ImageListRepository {
 
     private var imageListData: Single<List<Image>>? = null

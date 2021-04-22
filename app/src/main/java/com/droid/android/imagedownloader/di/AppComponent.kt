@@ -1,6 +1,7 @@
 package com.droid.android.imagedownloader.di
 
 import com.droid.android.imagedownloader.di.imageDetails.ImageDetailViewModelModule
+import com.droid.android.imagedownloader.di.imageList.ImageListRepositoryModule
 import com.droid.android.imagedownloader.di.imageList.ImageListViewModelModule
 import com.droid.android.imagedownloader.imageDetail.view.ImageDetailFragment
 import com.droid.android.imagedownloader.imageList.view.ImageListFragment
@@ -14,12 +15,10 @@ import javax.inject.Singleton
 @Component(
     modules = [AppModule::class,
         ImageListViewModelModule::class,
-        ImageDetailViewModelModule::class]
+        ImageDetailViewModelModule::class,
+        ImageListRepositoryModule::class]
 )
 interface AppComponent {
-    fun inject(imageListRepository: ImageListRepository)
-
-    //    fun inject(imageListViewModel: ImageListViewModel)
     fun inject(mainActivity: MainActivity)
     fun inject(viewModelProviderFactory: ViewModelProviderFactory)
     fun inject(fragment: ImageListFragment)
