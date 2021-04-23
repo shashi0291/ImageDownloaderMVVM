@@ -14,7 +14,7 @@ import javax.inject.Inject
 class ImageListRepositoryImpl @Inject constructor(private val imageService: ImageService) :
     ImageListRepository {
 
-    val imageListSubject = BehaviorSubject.create<List<Image>>()
+    private val _imageListSubject = BehaviorSubject.create<List<Image>>()
 
     override fun init() {
         imageService.fetchImageList()
@@ -23,23 +23,23 @@ class ImageListRepositoryImpl @Inject constructor(private val imageService: Imag
             .subscribe(
                 {
                     // success
-                    imageListSubject.onNext(it)
+                    _imageListSubject.onNext(it)
                 }, {
                     // failure
                     Log.d("", "error" + it)
-                    imageListSubject.onError(it)
+                    _imageListSubject.onError(it)
                 }
             )
     }
 
     override fun getImageFromCacheOrInit(): Observable<List<Image>> {
-        if (!imageListSubject.hasValue()) {
+        if (!_imageListSubject.hasValue()) {
             init()
         }
         return getImageFromCache()
     }
 
     override fun getImageFromCache(): Observable<List<Image>> {
-        return imageListSubject.toSerialized().subscribeOn(Schedulers.io())
+        return _imageListSubject.toSerialized().subscribeOn(Schedulers.io())
     }
 }
