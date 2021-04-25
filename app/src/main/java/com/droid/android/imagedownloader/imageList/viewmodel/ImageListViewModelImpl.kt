@@ -21,7 +21,7 @@ class ImageListViewModelImpl @Inject constructor(private val imageListRepository
     override val errorLiveData: LiveData<String>
         get() = _errorMutableLiveData
 
-    val compositeDisposable = CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     init {
         fetchImageList()

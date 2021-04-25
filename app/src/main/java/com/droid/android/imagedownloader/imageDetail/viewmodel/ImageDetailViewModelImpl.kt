@@ -24,7 +24,7 @@ class ImageDetailViewModelImpl @Inject constructor(private val imageListReposito
 
     private val compositeDisposable = CompositeDisposable()
 
-    override fun getImageById(imageId: Int) {
+    override fun getImageById(id: Int) {
         compositeDisposable.add(
             imageListRepository.getImageFromCache()
                 .subscribeOn(Schedulers.io())
@@ -32,7 +32,7 @@ class ImageDetailViewModelImpl @Inject constructor(private val imageListReposito
                 .subscribe({
                     it?.let { imageList ->
                         if (!it.isNullOrEmpty()) {
-                            imageList.firstOrNull { it.id == imageId }?.let { image ->
+                            imageList.firstOrNull { it.id == id }?.let { image ->
                                 _imageListMutableLiveData.postValue(image)
                             }
                         } else {

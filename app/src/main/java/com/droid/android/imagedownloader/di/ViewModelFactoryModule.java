@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 
-// this class is to be copy pasted
 @Module
 public abstract class ViewModelFactoryModule {
 

@@ -1,5 +1,6 @@
 package com.droid.android.imagedownloader.repository
 
+import android.annotation.SuppressLint
 import android.util.Log
 import com.droid.android.imagedownloader.service.ImageService
 import com.droid.android.imagedownloader.model.Image
@@ -14,6 +15,7 @@ class ImageListRepositoryImpl @Inject constructor(private val imageService: Imag
 
     private val _imageListSubject = BehaviorSubject.create<List<Image>>()
 
+    @SuppressLint("CheckResult")
     override fun init() {
         imageService.fetchImageList()
             .subscribeOn(Schedulers.io())
