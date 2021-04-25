@@ -1,8 +1,7 @@
 package com.droid.android.imagedownloader.repository
 
-import com.droid.android.model.Image
+import com.droid.android.imagedownloader.model.Image
 import io.reactivex.Observable
-import io.reactivex.Single
 
 interface ImageListRepository {
     fun init()

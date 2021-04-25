@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.droid.android.imagedownloader.R
 import com.droid.android.imagedownloader.databinding.ImageListRowItemBinding
-import com.droid.android.model.Image
+import com.droid.android.imagedownloader.model.Image
 
 class ImageListAdapter constructor(
     private val imageList: MutableList<Image>,
@@ -26,7 +26,7 @@ class ImageListAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ImageViewHolder).binding.thumbnailUrl = imageList[position].thumbnailUrl
+        (holder as ImageViewHolder).binding.title = imageList[position].title
         holder.itemView.setOnClickListener {
             holder.onImageItemClicked(imageList[position].id)
         }

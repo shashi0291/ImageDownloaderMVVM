@@ -1,4 +1,4 @@
-package com.droid.android.model
+package com.droid.android.imagedownloader.model
 
 import com.google.gson.annotations.SerializedName
 

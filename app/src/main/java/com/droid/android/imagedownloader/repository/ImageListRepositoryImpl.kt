@@ -2,10 +2,8 @@ package com.droid.android.imagedownloader.repository
 
 import android.util.Log
 import com.droid.android.imagedownloader.service.ImageService
-import com.droid.android.model.Image
+import com.droid.android.imagedownloader.model.Image
 import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject

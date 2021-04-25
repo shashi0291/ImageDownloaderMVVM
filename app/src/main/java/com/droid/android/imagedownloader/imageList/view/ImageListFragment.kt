@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.droid.android.imagedownloader.R
 import com.droid.android.imagedownloader.databinding.FragmentImageListBinding
 import com.droid.android.imagedownloader.di.ViewModelProviderFactory
@@ -45,7 +46,7 @@ class ImageListFragment : Fragment() {
 
     private fun setView() {
         binding.apply {
-            imageListRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+            imageListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
