@@ -56,7 +56,7 @@ class ImageDetailFragment : Fragment() {
     private fun setObservers() {
         imageDetailViewModel.imageListLiveData.observe(this, Observer {
             Log.d("TAG", "URL = $it")
-            binding.mainUrl = it
+            binding.imageItem = it
         })
 
         imageDetailViewModel.errorLiveData.observe(this, Observer {

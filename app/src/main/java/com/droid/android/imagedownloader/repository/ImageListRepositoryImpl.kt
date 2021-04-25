@@ -24,7 +24,7 @@ class ImageListRepositoryImpl @Inject constructor(private val imageService: Imag
                     _imageListSubject.onNext(it)
                 }, {
                     // failure
-                    Log.d("", "error" + it)
+                    Log.d(ImageListRepositoryImpl::class.java.name, "error $it")
                     _imageListSubject.onError(it)
                 }
             )
